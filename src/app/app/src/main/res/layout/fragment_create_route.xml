@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.createRouteView.CreateRouteFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/fragment_vertical_margin"
+        android:paddingHorizontal="@dimen/fragment_horizontal_margin">
+
+        <TextView
+            android:id="@+id/textview_createRouteFragment_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_route_title"
+            android:textSize="@dimen/h2_text_size"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_createRouteFragment_agencies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/title_bottom_margin"
+            android:hint="@string/select_agency"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:startIconTint="@color/dark_gray"
+            app:endIconMode="dropdown_menu"
+            android:importantForAccessibility="yes"
+            android:labelFor="@id/autoCompleteView_createRouteFragment_agencies">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteView_createRouteFragment_agencies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/plain_text_size"
+                android:inputType="none"
+                android:clickable="true"
+                android:importantForAccessibility="yes"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInput_createRouteFragment_routeName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="@string/route_name"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayout_createRouteFragment_agencies"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/plain_text_size"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_createRouteFragment_selectStartPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:text="@string/select_starting_point"
+            android:textStyle="bold"
+            android:textSize="@dimen/plain_text_size"
+            app:icon="@drawable/ic_marker"
+            app:tint="@color/main_color"
+            app:iconSize="@dimen/button_icon_size"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeWidth="@dimen/input_stroke_width"
+            app:strokeColor="@color/main_color"
+            app:cornerRadius="@dimen/input_corner_radius"
+            app:layout_constraintTop_toBottomOf="@id/textInput_createRouteFragment_routeName"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_createRouteFragment_startPointError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Debes seleccionar una ubicación de partida."
+            android:textColor="@color/red_error"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintTop_toBottomOf="@id/button_createRouteFragment_selectStartPoint"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+            />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView_createRouteFragment_start"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView_createRouteFragment_startPointError"
+            app:layout_constraintStart_toStartOf="parent"
+            app:liteMode="true"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_createRouteFragment_selectEndPoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:text="@string/select_end_point"
+            android:textStyle="bold"
+            android:textSize="@dimen/plain_text_size"
+            app:icon="@drawable/ic_marker"
+            app:tint="@color/main_color"
+            app:iconSize="@dimen/button_icon_size"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeWidth="@dimen/input_stroke_width"
+            app:strokeColor="@color/main_color"
+            app:cornerRadius="@dimen/input_corner_radius"
+            app:layout_constraintTop_toBottomOf="@id/mapView_createRouteFragment_start"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_createRouteFragment_endPointError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Debes seleccionar una ubicación de llegada."
+            android:textColor="@color/red_error"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintTop_toBottomOf="@id/button_createRouteFragment_selectEndPoint"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+            />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView_createRouteFragment_end"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/textView_createRouteFragment_endPointError"
+            app:layout_constraintStart_toStartOf="parent"
+            app:liteMode="true"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_createRouteFragment_selectImages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:text="@string/select_units_images"
+            android:textStyle="bold"
+            android:textSize="@dimen/plain_text_size"
+            app:icon="@drawable/ic_image"
+            app:tint="@color/main_color"
+            app:iconSize="@dimen/button_icon_size"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeWidth="@dimen/input_stroke_width"
+            app:strokeColor="@color/main_color"
+            app:cornerRadius="@dimen/input_corner_radius"
+            app:layout_constraintTop_toBottomOf="@id/mapView_createRouteFragment_end"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_createRouteFragment_imageError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Debes seleccionar al menos una imagen."
+            android:textColor="@color/red_error"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintTop_toBottomOf="@id/button_createRouteFragment_selectImages"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_createRouteFragment_imagesGallery"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/textView_createRouteFragment_imageError"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_createRouteFragment_scheduleTitle"
+            android:text="@string/attention_schedule"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/h5_text_size"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView_createRouteFragment_imagesGallery"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_createRouteFragment_mondayLabel"
+            android:textColor="@color/black"
+            android:textSize="@dimen/plain_text_size"
+            android:text="@string/monday"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_scheduleTitle"
+            app:layout_constraintStart_toStartOf="@id/textview_createRouteFragment_scheduleTitle"
+            app:layout_constraintEnd_toStartOf="@id/editText_createRouteFragment_startScheduleMonday"
+            />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_startScheduleMonday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@id/textview_createRouteFragment_mondayLabel"
+            app:layout_constraintEnd_toStartOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintStart_toEndOf="@id/textview_createRouteFragment_mondayLabel"
+            app:layout_constraintTop_toTopOf="@id/textview_createRouteFragment_mondayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_endScheduleMonday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toStartOf="@id/switch_createRouteFragment_scheduleMonday"
+            app:layout_constraintStart_toEndOf="@id/editText_createRouteFragment_startScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_startScheduleMonday" />
+
+
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_createRouteFragment_scheduleMonday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:contentDescription="@string/monday_workday_switch_description"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintBottom_toBottomOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintStart_toEndOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_createRouteFragment_tuesdayLabel"
+            android:textColor="@color/black"
+            android:textSize="@dimen/plain_text_size"
+            android:text="@string/tuesday"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_mondayLabel"
+            app:layout_constraintStart_toStartOf="@id/textview_createRouteFragment_mondayLabel"
+            />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_startScheduleTuesday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@id/textview_createRouteFragment_tuesdayLabel"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_startScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/textview_createRouteFragment_tuesdayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_endScheduleTuesday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_startScheduleTuesday" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_createRouteFragment_scheduleTuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:contentDescription="@string/tuesday_workday_switch_description"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_endScheduleTuesday"
+            app:layout_constraintBottom_toBottomOf="@id/editText_createRouteFragment_endScheduleTuesday"
+            app:layout_constraintStart_toStartOf="@id/switch_createRouteFragment_scheduleMonday"
+            app:layout_constraintEnd_toEndOf="@id/switch_createRouteFragment_scheduleMonday"
+            />
+
+        <!-- Wednesday -->
+        <TextView
+            android:id="@+id/textview_createRouteFragment_wednesdayLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/plain_text_size"
+            android:text="@string/wednesday"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_tuesdayLabel"
+            app:layout_constraintStart_toStartOf="@id/textview_createRouteFragment_mondayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_startScheduleWednesday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@id/textview_createRouteFragment_wednesdayLabel"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_startScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/textview_createRouteFragment_wednesdayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_endScheduleWednesday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_startScheduleWednesday" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_createRouteFragment_scheduleWednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:contentDescription="@string/wednesday_workday_switch_description"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_endScheduleWednesday"
+            app:layout_constraintBottom_toBottomOf="@id/editText_createRouteFragment_endScheduleWednesday"
+            app:layout_constraintStart_toStartOf="@id/switch_createRouteFragment_scheduleMonday"
+            app:layout_constraintEnd_toEndOf="@id/switch_createRouteFragment_scheduleMonday" />
+
+        <!-- Thursday -->
+        <TextView
+            android:id="@+id/textview_createRouteFragment_thursdayLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/plain_text_size"
+            android:text="@string/thursday"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_wednesdayLabel"
+            app:layout_constraintStart_toStartOf="@id/textview_createRouteFragment_mondayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_startScheduleThursday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@id/textview_createRouteFragment_thursdayLabel"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_startScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/textview_createRouteFragment_thursdayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_endScheduleThursday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_startScheduleThursday" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_createRouteFragment_scheduleThursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:contentDescription="@string/thursday_workday_switch_description"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_endScheduleThursday"
+            app:layout_constraintBottom_toBottomOf="@id/editText_createRouteFragment_endScheduleThursday"
+            app:layout_constraintStart_toStartOf="@id/switch_createRouteFragment_scheduleMonday"
+            app:layout_constraintEnd_toEndOf="@id/switch_createRouteFragment_scheduleMonday" />
+
+        <!-- Friday -->
+        <TextView
+            android:id="@+id/textview_createRouteFragment_fridayLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/plain_text_size"
+            android:text="@string/friday"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_thursdayLabel"
+            app:layout_constraintStart_toStartOf="@id/textview_createRouteFragment_mondayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_startScheduleFriday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@id/textview_createRouteFragment_fridayLabel"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_startScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/textview_createRouteFragment_fridayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_endScheduleFriday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_startScheduleFriday" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_createRouteFragment_scheduleFriday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:contentDescription="@string/friday_workday_switch_description"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_endScheduleFriday"
+            app:layout_constraintBottom_toBottomOf="@id/editText_createRouteFragment_endScheduleFriday"
+            app:layout_constraintStart_toStartOf="@id/switch_createRouteFragment_scheduleMonday"
+            app:layout_constraintEnd_toEndOf="@id/switch_createRouteFragment_scheduleMonday" />
+
+        <!-- Saturday -->
+        <TextView
+            android:id="@+id/textview_createRouteFragment_saturdayLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/plain_text_size"
+            android:text="@string/saturday"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_fridayLabel"
+            app:layout_constraintStart_toStartOf="@id/textview_createRouteFragment_mondayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_startScheduleSaturday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@id/textview_createRouteFragment_saturdayLabel"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_startScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/textview_createRouteFragment_saturdayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_endScheduleSaturday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_startScheduleSaturday" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_createRouteFragment_scheduleSaturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:contentDescription="@string/saturday_workday_switch_description"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_endScheduleSaturday"
+            app:layout_constraintBottom_toBottomOf="@id/editText_createRouteFragment_endScheduleSaturday"
+            app:layout_constraintStart_toStartOf="@id/switch_createRouteFragment_scheduleMonday"
+            app:layout_constraintEnd_toEndOf="@id/switch_createRouteFragment_scheduleMonday" />
+
+        <!-- Sunday -->
+        <TextView
+            android:id="@+id/textview_createRouteFragment_sundayLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/plain_text_size"
+            android:text="@string/sunday"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_saturdayLabel"
+            app:layout_constraintStart_toStartOf="@id/textview_createRouteFragment_mondayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_startScheduleSunday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:focusable="false"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@id/textview_createRouteFragment_sundayLabel"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_startScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/textview_createRouteFragment_sundayLabel" />
+
+        <EditText
+            android:id="@+id/editText_createRouteFragment_endScheduleSunday"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:hint="@string/time_template"
+            android:importantForAutofill="no"
+            android:focusable="false"
+            android:inputType="none"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@id/editText_createRouteFragment_endScheduleMonday"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_startScheduleSunday" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_createRouteFragment_scheduleSunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:contentDescription="@string/sunday_workday_switch_description"
+            app:layout_constraintTop_toTopOf="@id/editText_createRouteFragment_endScheduleSunday"
+            app:layout_constraintBottom_toBottomOf="@id/editText_createRouteFragment_endScheduleSunday"
+            app:layout_constraintStart_toStartOf="@id/switch_createRouteFragment_scheduleMonday"
+            app:layout_constraintEnd_toEndOf="@id/switch_createRouteFragment_scheduleMonday" />
+
+        <TextView
+            android:id="@+id/textView_createRouteFragment_scheduleError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_general_error"
+            android:textColor="@color/red_error"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_sundayLabel"
+            app:layout_constraintStart_toStartOf="@id/textview_createRouteFragment_sundayLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="25dp"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_createRouteFragment_unitsTitle"
+            android:text="@string/add_units_title"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/h5_text_size"
+            app:layout_constraintTop_toBottomOf="@id/textView_createRouteFragment_scheduleError"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="50dp"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInput_createRouteFragment_addUnits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="@string/add_unit_id"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/textview_createRouteFragment_unitsTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_createRouteFragment_addUnit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/plain_text_size"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_createRouteFragment_addUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp"
+            android:text="@string/add"
+            android:textStyle="bold"
+            android:textSize="@dimen/plain_text_size"
+            app:tint="@color/main_color"
+            app:iconSize="@dimen/button_icon_size"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeWidth="@dimen/input_stroke_width"
+            app:strokeColor="@color/main_color"
+            app:cornerRadius="@dimen/input_corner_radius"
+            app:layout_constraintTop_toTopOf="@id/textInput_createRouteFragment_addUnits"
+            app:layout_constraintStart_toEndOf="@id/textInput_createRouteFragment_addUnits"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup_createRouteFragment_unitsId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:chipSpacing="8dp"
+            app:singleLine="false"
+            app:layout_constraintTop_toBottomOf="@id/textInput_createRouteFragment_addUnits"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_createRouteFragment_createRoute"
+            android:text="@string/create_new_route"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/button_radius"
+            android:paddingVertical="@dimen/button_vertical_padding"
+            android:layout_marginTop="35dp"
+            app:layout_constraintTop_toBottomOf="@id/chipGroup_createRouteFragment_unitsId"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

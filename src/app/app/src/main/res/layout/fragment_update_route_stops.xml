@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.updateRouteStopsView.UpdateRouteStopsFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView_updateRouteStops"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_updateStops_confirm"
+        app:layout_constraintStart_toStartOf="parent"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/fragment_vertical_margin"
+            android:paddingHorizontal="@dimen/fragment_horizontal_margin">
+
+            <TextView
+                android:id="@+id/textView_updateRouteStops_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/stops"
+                android:textSize="@dimen/h2_text_size"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_updateRouteStops_stops"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                tools:listitem="@layout/item_selected_stops" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_updateRouteStops_selectStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/floating_action_button_margin"
+        android:layout_marginBottom="30dp"
+        android:textAllCaps="false"
+        android:contentDescription="@string/select_stop_content_desc"
+        app:icon="@drawable/ic_select"
+        android:backgroundTint="@color/secondary_dark_color"
+        app:iconTint="@color/black"
+        android:textColor="@color/black"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        app:layout_constraintBottom_toTopOf="@id/button_updateStops_confirm"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_updateStops_confirm"
+        android:text="@string/confirm_changes"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/button_text_size"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/button_radius"
+        android:paddingVertical="@dimen/button_vertical_padding"
+        android:layout_marginBottom="@dimen/fragment_vertical_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homePageFragment">
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.public_transport_app.ui.homePage.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" />
+    <fragment
+        android:id="@+id/loginPageFragment"
+        android:name="com.example.public_transport_app.ui.loginPage.LoginPageFragment"
+        android:label="fragment_login_page"
+        tools:layout="@layout/fragment_login_page" >
+        <action
+            android:id="@+id/action_loginPageFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/loginPageFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/routesListFragment"
+        android:name="com.example.public_transport_app.ui.routesListView.RoutesListFragment"
+        android:label="RoutesListFragment" >
+        <action
+            android:id="@+id/action_routesListFragment_to_createRouteFragment"
+            app:destination="@id/createRouteFragment" />
+        <action
+            android:id="@+id/action_routesListFragment_to_routeViewFragment"
+            app:destination="@id/routeViewFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_loginPageFragment" app:destination="@id/loginPageFragment" />
+    <action android:id="@+id/action_global_homePageFragment" app:destination="@id/homePageFragment" /><action android:id="@+id/action_global_routesListFragment" app:destination="@id/routesListFragment"/>
+    <fragment
+        android:id="@+id/createRouteFragment"
+        android:name="com.example.public_transport_app.ui.createRouteView.CreateRouteFragment"
+        android:label="fragment_create_route"
+        tools:layout="@layout/fragment_create_route" >
+        <action
+            android:id="@+id/action_createRouteFragment_to_selectLocationMapFragment"
+            app:destination="@id/selectLocationMapFragment" />
+        <action
+            android:id="@+id/action_createRouteFragment_to_routeViewFragment"
+            app:destination="@id/routeViewFragment"
+            app:popUpTo="@id/createRouteFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/selectLocationMapFragment"
+        android:name="com.example.public_transport_app.ui.selectLocationMap.SelectLocationMapFragment"
+        android:label="fragment_select_location_map"
+        tools:layout="@layout/fragment_select_location_map" >
+        <argument
+            android:name="requestKey"
+            app:argType="string"
+            android:defaultValue="location_request" />
+    </fragment>
+    <fragment
+        android:id="@+id/routeViewFragment"
+        android:name="com.example.public_transport_app.ui.routeView.RouteViewFragment"
+        android:label="fragment_route_view"
+        tools:layout="@layout/fragment_route_view" >
+        <argument
+            android:name="routeId"
+            app:argType="string" />
+
+        <deepLink
+            app:uri="publictransport://route/{routeId}" />
+        <action
+            android:id="@+id/action_routeViewFragment_to_updateRouteStopsFragment"
+            app:destination="@id/updateRouteStopsFragment" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/updateRouteStopsFragment"
+        android:name="com.example.public_transport_app.ui.updateRouteStopsView.UpdateRouteStopsFragment"
+        android:label="UpdateRouteStopsFragment" >
+        <argument
+            android:name="routeId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_updateRouteStopsFragment_to_routeViewFragment"
+            app:destination="@id/routeViewFragment" />
+        <action
+            android:id="@+id/action_updateRouteStopsFragment_to_selectRouteStopsFragment"
+            app:destination="@id/selectRouteStopsFragment" />
+        <argument
+            android:name="agencyId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectRouteStopsFragment"
+        android:name="com.example.public_transport_app.ui.selectRouteStopsView.SelectRouteStopsFragment"
+        android:label="fragment_select_route_stops"
+        tools:layout="@layout/fragment_select_route_stops" >
+        <argument
+            android:name="eventKey"
+            app:argType="string" />
+        <argument
+            android:name="stopsToIgnore"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument android:name="agencyId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/createStopFragment"
+        android:name="com.example.public_transport_app.ui.createStopView.CreateStopFragment"
+        android:label="fragment_create_stop"
+        tools:layout="@layout/fragment_create_stop" >
+        <action
+            android:id="@+id/action_createStopFragment_to_selectLocationMapFragment"
+            app:destination="@id/selectLocationMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stopsListFragment"
+        android:name="com.example.public_transport_app.ui.stopsListView.StopsListFragment"
+        android:label="fragment_stops_list"
+        tools:layout="@layout/fragment_stops_list" >
+        <action
+            android:id="@+id/action_stopsListFragment_to_createStopFragment"
+            app:destination="@id/createStopFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_stopsListFragment" app:destination="@id/stopsListFragment" />
+</navigation>

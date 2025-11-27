@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingHorizontal="25dp"
+    android:paddingVertical="40dp"
+    android:background="@color/main_color">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_sideNavBar_appName1"
+        android:textSize="@dimen/h1_text_size"
+        android:text="@string/subite_app_name"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_sideNavBar_appName2"
+        android:textStyle="bold"
+        android:textColor="@color/secondary_dark_color"
+        android:text="@string/ya_app_name"
+        android:textSize="@dimen/h1_text_size"
+        app:layout_constraintTop_toTopOf="@id/textView_sideNavBar_appName1"
+        app:layout_constraintStart_toEndOf="@id/textView_sideNavBar_appName1"
+
+        />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/imageView_sideNavBar_logoBus"
+        android:contentDescription="@string/logo_bus_description"
+        android:src="@drawable/logo_bus"
+        app:layout_constraintBottom_toBottomOf="@id/textView_sideNavBar_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/logo_marker_description"
+        android:src="@drawable/logo_marker"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_sideNavBar_logoBus"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_sideNavBar_logoBus"
+        app:layout_constraintStart_toStartOf="@+id/imageView_sideNavBar_logoBus" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_sideNavBar_name"
+        android:textColor="@color/light_gray"
+        tools:text="Diego Morales"
+        android:textSize="@dimen/h6_text_size"
+        app:layout_constraintTop_toBottomOf="@id/textView_sideNavBar_appName1"
+        app:layout_constraintStart_toStartOf="@id/textView_sideNavBar_appName1"
+        android:layout_marginTop="5dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="5dp"
+    android:paddingBottom="@dimen/list_item_gap"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardView_accountItemTemplate_parentContainer"
+        android:backgroundTint="#F3F3F3"
+        app:cardElevation="@dimen/item_elevation"
+        app:cardCornerRadius="@dimen/item_border_radius"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textSize="@dimen/h6_text_size"
+            android:paddingHorizontal="@dimen/item_horizontal_padding"
+            android:paddingVertical="@dimen/item_vertical_padding"
+            android:maxLines="2"
+            android:ellipsize="end"
+            tools:text="Este es un nombre muy largo de una ruta asfasfaskdfasdfñklasfkasfdlkaskfaasfkaaklsfñ"
+            />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

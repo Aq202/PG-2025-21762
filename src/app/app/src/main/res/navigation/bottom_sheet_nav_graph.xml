@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_nav_graph"
+    app:startDestination="@id/mainBottomViewFragment">
+
+    <fragment
+        android:id="@+id/mainBottomViewFragment"
+        android:name="com.example.public_transport_app.ui.mainBottomView.MainBottomViewFragment"
+        android:label="fragment_main_bottom_view"
+        tools:layout="@layout/fragment_main_bottom_view" />
+    <fragment
+        android:id="@+id/routeDetailsBottomView"
+        android:name="com.example.public_transport_app.ui.routeDetailsBottomView.RouteDetailsBottomView"
+        android:label="fragment_route_details_bottom_view"
+        tools:layout="@layout/fragment_route_details_bottom_view" >
+        <action
+            android:id="@+id/action_routeDetailsBottomView_to_mainBottomViewFragment"
+            app:destination="@id/mainBottomViewFragment" />
+        <argument
+            android:name="routeId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_routeDetailsBottomView_to_mainBottomViewFragment2"
+            app:destination="@id/mainBottomViewFragment" />
+        <action
+            android:id="@+id/action_routeDetailsBottomView_to_mainBottomViewFragment3"
+            app:destination="@id/mainBottomViewFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_mainBottomViewFragment" app:destination="@id/mainBottomViewFragment" /><action android:id="@+id/action_global_routeDetailsBottomView" app:destination="@id/routeDetailsBottomView"/>
+</navigation>
