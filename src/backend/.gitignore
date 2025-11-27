@@ -1,7 +1,7 @@
 node_modules
 dist
 files
-.env
+.env*
 __pycache__
 guatemala.osm.pbf
 osrm/*.osrm*
