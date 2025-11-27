@@ -1,0 +1,43 @@
+services:
+  # App Node (Express)
+  app:
+    build:
+      context: ./main-api
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./main-api:/usr/src/app:cached
+      - /usr/src/app/node_modules
+    command: npm run dev-docker
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - fastapi
+      - osrm
+
+  # API Python (FastAPI)
+  fastapi:
+    build:
+      context: ./routes-api
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./routes-api:/usr/src/app:delegated
+    env_file:
+      - ./routes-api/.env.dev
+
+  # OSRM
+  osrm:
+    build:
+      context: ./osrm
+      dockerfile: Dockerfile.dev
+    container_name: osrm-guatemala
+    ports:
+      - "5000:5000"
+    volumes:
+    - ./osrm:/data
+
+volumes:
+  node_modules:

@@ -1,0 +1,9 @@
+# Imagen base oficial de OSRM
+FROM osrm/osrm-backend:latest
+
+WORKDIR /data
+
+# Exponemos puerto de OSRM
+EXPOSE 5000
+
+CMD ["osrm-routed", "--algorithm", "CH", "--max-matching-size=10000", "/data/guatemala.osrm"]

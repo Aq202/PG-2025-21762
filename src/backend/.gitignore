@@ -1,0 +1,7 @@
+node_modules
+dist
+files
+.env
+__pycache__
+guatemala.osm.pbf
+osrm/*.osrm*

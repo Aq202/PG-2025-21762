@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-jose[cryptography]
+python-dotenv
+pydantic-settings
+numpy
+numba
+motor
+scipy
+h3
